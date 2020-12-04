@@ -8,7 +8,6 @@ verify_ssl = true
 [packages]
 django = "*"
 djongo = "*"
-django-session-timeout = "*"
 django-session-security = "*"
 
 [requires]
