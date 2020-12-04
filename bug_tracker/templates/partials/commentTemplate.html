@@ -1,0 +1,14 @@
+{% if comments %}
+{% for comment in comments %}
+<div class="row bg-light border rounded-lg m-1 mt-2 ticket" style="width:100%;">
+    <div class="col text-left">
+        <label id="m-title-id" class="ticket-title">{{comment.comment}}</label>
+        <div class="mb-2">
+            <span id="m-date-id">{{comment.dateTime|date:"d/m/Y"}}</span>
+            •
+            <span class="">{{comment.user.first_name}} {{comment.user.last_name}}</span>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endif %}

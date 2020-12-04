@@ -1,0 +1,30 @@
+{% if ticket_list %}
+{% for ticket in ticket_list %}
+
+<button id="btn_{{ticket.id}}" class="btn ticketViewBtn row bg-light border rounded-lg m-1 mt-2 ticket"
+    style="width:100%;">
+    <!-- <div class="row" id="milestone-id"> -->
+    <div class="col text-left">
+        <label id="m-title-id" class="ticket-title">{{ticket.description|truncatechars:80}}</label>
+        <div class="mb-2">
+            <span id="m-date-id">{{ticket.dateTime|date:"d/m/Y"}}</span>
+            •
+            <span class="">{{ticket.type}}</span>
+            •
+            <span class="">{{ticket.responsibleTeamMember.first_name}}
+                {{ticket.responsibleTeamMember.last_name}}</span>
+            •
+            <span class="">{{ticket.priority}}</span>
+            •
+            <span class="">{{ticket.status}}</span>
+            |
+            <span class="">Finder {{ticket.finderUserName.first_name}}
+                {{ticket.finderUserName.last_name}}</span>
+        </div>
+        <!-- </div> -->
+    </div>
+</button>
+{% endfor %}
+{% else %}
+<p class="info">No tickets available</p>
+{% endif %}

@@ -1,0 +1,24 @@
+.bottom-stripe {
+    background-color: #002a49;
+    height: 55%;
+    width: 100%;
+    z-index: -1;
+    position: absolute;
+    border-radius: 2em 2em 0 0 !important;
+}
+
+#authentication-header {
+    z-index: -1;
+    position: absolute;
+}
+
+#main-section {
+    height: 100vh;
+}
+
+#authentication-card {
+    width: 30em;
+    padding: 2em;
+    top: -10%;
+    border-radius: 1.5em;
+}

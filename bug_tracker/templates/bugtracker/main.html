@@ -1,0 +1,112 @@
+{% load static %}
+{% include 'session_security/all.html' %}
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <link rel="shortcut icon" type="image/png" href="/static/bugtracker/img/half_logo.png">
+        <link rel="shortcut icon" sizes="196x196" href="/static/bugtracker/img/full_logo.png">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+            integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+            crossorigin="anonymous" />
+
+        <link href="/static/bugtracker/css/style.css?version=1.3" rel="stylesheet" type="text/css" />
+
+        <!-- Include English language -->
+        <title>SSTS - Bug Tracker</title>
+
+    </head>
+
+    <body>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="col-9">
+                <div class="row d-flex align-items-end">
+                    <div class="col-1-2">
+                        <h4 class="mb-0"><img style="height:3em; width:auto;" src="/static/bugtracker/img/full_logo.png"
+                                alt="bug tracker logo" class=""></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="float-right d-flex">
+                    <div class="dropleft">
+                        <button class="btn btn-default" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false"><i class="fas fa-sign-out-alt fa-lg"></i>
+                        </button>
+                        <div class="dropdown-menu col-12 p-3" aria-haspopup="true" aria-expanded="false">
+
+                            <div class="row">
+                                <div class="col p-1 text-center">
+                                    <label class='font-weight-bold'>Logout now?</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 p-1">
+                                    <a href="/logout/" class='btn btn-primary btn-block'><i
+                                            class="fas fa-sign-out-alt fa-lg"></i></a>
+                                </div>
+                                <div class="col-6 p-1">
+                                    <a href="#" class='btn btn-default btn-sm btn-block'>Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-inline-block">
+                        <label class=' col-sm-auto text-center'>
+                            <h1 style="font-size: 1.6em; font-weight:normal;">😀</h1>
+                            <p class="mb-0">{{request.user.first_name}}
+                                {{request.user.last_name}}</p>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- End of Navigation -->
+
+        <!-- Main -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 mt-2">
+                    <div class="row mt-3 mr-1">
+                        <div class="col-4">
+                            <h3>
+                                Today
+                            </h3> <span id="formattedDate"></span>
+                        </div>
+                        {% if form %}
+                        <div class="col-8 card p-3 ticket">
+                            {% include 'partials/addTicketForm.html' with formData=form action=action %}
+                        </div>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+            <div class="row border rounded-lg m-1 mt-3 d-flex" id="ticket-list">
+                <div class="col">
+                    <div id="tickets">
+                        {% include 'partials/ticketList.html' with ticket_list=ticketList %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of Main -->
+
+        <!-- Scripts -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js"></script> -->
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.4/dist/sweetalert2.all.min.js"></script>
+        <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+        <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
+
+        <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+        <script src="/static/bugtracker/js/main.js?version=1"></script>
+    </body>
+
+</html>

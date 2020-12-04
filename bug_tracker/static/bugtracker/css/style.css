@@ -1,0 +1,55 @@
+.btn-default {
+    background-color: #e7e7e7 !important;
+}
+
+/*input:invalid {*/
+/*    border: 2px dashed red;*/
+/*}*/
+
+/*input:valid {*/
+/*    border: 2px solid black;*/
+/*}*/
+
+html, body {
+    min-height: 100% !important;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#ticket-list {
+    overflow: auto;
+    height: calc(100% - 19.5em);
+    border-radius: 1.3em !important;
+}
+
+.ticketView {
+    overflow: auto;
+    height: calc(100% - 1.5em);
+}
+
+#commentList {
+    overflow: auto;
+    height: calc(100% - 14.5em);
+}
+
+.ticket {
+    border-radius: 1em !important;
+}
+.ticket-title {
+    font-size: 1.25rem;
+    margin-bottom: .2rem;
+}
+
+.actions-class {
+    align-items: unset !important;
+    margin: 1.25em !important;
+}
+
+.btn-dialog-css{
+    margin-left: .5rem;
+    margin-right: .5rem;
+}

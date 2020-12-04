@@ -1,0 +1,50 @@
+<div id="ticketid_{{ticket.id}}" class="ticketView row bg-light border m-1 mt-2 ticket" style="width:100%;">
+    <div class="col-8 text-left">
+        <label id="m-title-id" class="ticket-title">{{ticket.description}}</label>
+        <div class="mb-2">
+            <span id="m-date-id">{{ticket.dateTime|date:"d/m/Y"}}</span>
+            •
+            <span class="">{{ticket.type}}</span>
+            •
+            <span class="">{{ticket.responsibleTeamMember.first_name}}
+                {{ticket.responsibleTeamMember.last_name}}</span>
+            •
+            <span class="">{{ticket.priority}}</span>
+            •
+            <span class="">{{ticket.status}}</span>
+            |
+            <span class="">Finder {{ticket.finderUserName.first_name}}
+                {{ticket.finderUserName.last_name}}</span>
+        </div>
+    </div>
+
+    <div class="col justify-content-end">
+        <div class="btn-group btn-block pt-1" role="group" aria-label="MS controls">
+            {% if allowed_user == True %}
+            <button id="{{ticket.id}}_edit" type="button" class="ticketBtn btn"><i class="fas fa-edit fa-lg"></i>
+            </button>
+            <button id="{{ticket.id}}_trash" type="button" class="ticketBtn btn"><i class="fas fa-trash-alt fa-lg"></i>
+            </button>
+            {% endif %}
+            <button id="{{ticket.id}}_closeView" type="button" class="ticketBtn  btn"><i
+                    class="fas fa-chevron-circle-up fa-lg"></i>
+            </button>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="row"><br></div>
+    </div>
+    <div class="col-12 commentContent">
+        <div class="row commentForm">
+            {% if form %}
+            <div class="col"> {% include 'partials/commentForm.html' with formData=form parentTicket=ticket %}</div>
+            {% endif %}
+        </div>
+        <div class="row" id="commentList">
+            <div class="col">
+                {% include 'partials/commentTemplate.html' with comments=comments %}
+            </div>
+        </div>
+    </div>
+</div>
+</div>

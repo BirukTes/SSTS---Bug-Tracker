@@ -1,0 +1,39 @@
+{% if action == 'update' %}
+<form id="updateTicketForm" method="POST" style="margin-block-end: 0;">
+    {% else %}
+    <form id="addTicketForm" method="POST" style="margin-block-end: 0;">
+        {% endif %}
+        {% csrf_token %}
+        <div class="row">
+            <div class="col">
+                {{formData.description}}
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col">
+                        <div class="row pb-2">
+                            {{formData.type}}
+                        </div>
+                        <div class="row pb-2">
+                            {{formData.responsibleTeamMember}}
+                        </div>
+                        <div class="row pb-2">
+                            {{formData.priority}}
+                        </div>
+                        {% if action == 'update' %}
+                        <div class="row pb-2">
+                            {{formData.status}}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% if action == 'create' %}
+            <div class="col-2">
+                <button name="addTicketBtn" id="addTicketBtn" class="btn btn-primary btn-block">
+                    Add
+                </button>
+            </div>
+            {% endif %}
+        </div>
+    </form>

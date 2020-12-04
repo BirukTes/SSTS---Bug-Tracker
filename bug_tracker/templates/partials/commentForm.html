@@ -1,0 +1,14 @@
+<form id="addCommentForm" data-parentticketid="{{parentTicket.id}}" method="POST" style="margin-block-end: 0.5em;">
+      {% csrf_token %} 
+      <div class="row">     
+        <div class="col">
+            {{formData.comment}}
+        </div>
+       
+        <div class="col-2">
+            <button name="addCommentBtn" id="addCommentBtn" class="btn btn-primary btn-block">
+                Add
+            </button>
+        </div>
+    </div>
+</form>
