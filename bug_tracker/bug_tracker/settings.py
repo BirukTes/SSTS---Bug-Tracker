@@ -34,7 +34,6 @@ else:
 
 ALLOWED_HOSTS = ['ssts-bug-tracker.herokuapp.com']
 
-# Admin Pass: sstsPass123
 
 # Application definition
 
@@ -85,23 +84,21 @@ WSGI_APPLICATION = 'bug_tracker.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# if sys.argv[1] != 'runserver':
-DATABASES = {
-    'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'SSTS_Bug_Tracker_DB',
-        'HOST': os.environ['MONGODB_URI'],
-        'USER': os.environ['dbUser'],
-        'PASSWORD': os.environ['dbPassword'],
+if sys.argv[1] != 'runserver':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'SSTS_Bug_Tracker_DB',
+        }
     }
-}
-# else:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'djongo',
-#             'NAME': 'SSTS_Bug_Tracker_DB',
-#         }
-#     }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'djongo',
+            'NAME': 'SSTS_Bug_Tracker_DB',
+        }
+    }
+
 
 
 # Password validation
