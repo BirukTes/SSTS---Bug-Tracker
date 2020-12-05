@@ -11,6 +11,7 @@ djongo = "*"
 django-session-security = "*"
 gunicorn = "*"
 whitenoise = "*"
+waitress = "*"
 
 [requires]
 python_version = "3.9"
