@@ -11,7 +11,6 @@ djongo = "*"
 django-session-security = "*"
 gunicorn = "*"
 whitenoise = "*"
-waitress = "*"
 django-heroku = "*"
 
 [requires]
