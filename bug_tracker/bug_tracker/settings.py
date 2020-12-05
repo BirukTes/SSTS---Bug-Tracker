@@ -31,7 +31,6 @@ else:
     DEBUG = True
 
 
-
 ALLOWED_HOSTS = ['ssts-bug-tracker.herokuapp.com']
 
 
@@ -52,6 +51,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -137,7 +137,7 @@ USE_L10N = True
 USE_TZ = True
 
 
-#### Session Security
+# Session Security
 SESSION_SECURITY_WARN_AFTER = 540
 SESSION_EXPIRE_SECONDS = 600  # 10 min
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
