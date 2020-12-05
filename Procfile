@@ -1,1 +1,1 @@
-web: gunicorn wsgi:application --log-file -
+web: PYTHONPATH=pwd/.. gunicorn bug_tracker.wsgi:application --log-file -
