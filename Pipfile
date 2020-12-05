@@ -9,6 +9,8 @@ verify_ssl = true
 django = "*"
 djongo = "*"
 django-session-security = "*"
+gunicorn = "*"
+whitenoise = "*"
 
 [requires]
 python_version = "3.9"

@@ -32,7 +32,7 @@ else:
 
 
 
-ALLOWED_HOSTS = ['https://ssts-bug-tracker.herokuapp.com/']
+ALLOWED_HOSTS = ['ssts-bug-tracker.herokuapp.com']
 
 
 # Admin Pass: sstsPass123
