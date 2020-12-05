@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 import sys
 from pathlib import Path
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,9 +31,13 @@ if sys.argv[1] != 'runserver':
 else:
     DEBUG = True
 
+# Activate Django-Heroku.
+django_heroku.settings(locals())
 
 ALLOWED_HOSTS = ['ssts-bug-tracker.herokuapp.com']
-
+# os.environ['MONGODB_URI'] = "mongodb+srv://biruktes:NNvHTpERu8xEzyw3@cluster0.gwh95.mongodb.net/SSTS_Bug_Tracker_DB?retryWrites=true&w=majority"
+# os.environ['dbUser'] = "biruktes"
+# os.environ['dbPassword'] = "NNvHTpERu8xEzyw3"
 
 # Admin Pass: sstsPass123
 

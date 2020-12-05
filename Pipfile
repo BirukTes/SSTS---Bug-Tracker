@@ -12,6 +12,7 @@ django-session-security = "*"
 gunicorn = "*"
 whitenoise = "*"
 waitress = "*"
+django-heroku = "*"
 
 [requires]
 python_version = "3.9"
