@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'bug_tracker.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'SSTS_Bug_Tracker_DB',
+        'NAME': os.path.join(BASE_DIR, 'SSTS_Bug_Tracker_DB'),
     }
 }
 # else:
