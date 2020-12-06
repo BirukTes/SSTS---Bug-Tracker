@@ -26,10 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'c9ho_i__c7(00anf7amgms&(+l6nsqn=4e0gmk5w#c4ka76yca'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if sys.argv[1] != 'runserver':
-    DEBUG = False
-else:
-    DEBUG = True
+# if sys.argv[1] != 'runserver':
+#     DEBUG = False
+# else:
+DEBUG = True
 
 
 ALLOWED_HOSTS = ['ssts-bug-tracker.herokuapp.com']
