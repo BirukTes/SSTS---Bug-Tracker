@@ -12,7 +12,6 @@ django-session-security = "*"
 gunicorn = "*"
 whitenoise = "*"
 django-heroku = "*"
-dnspython = "*"
 
 [requires]
 python_version = "3.9"
