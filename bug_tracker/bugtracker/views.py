@@ -1,6 +1,4 @@
-from django.http.response import JsonResponse
 from django.shortcuts import redirect, render, get_object_or_404
-from django.views.decorators.csrf import csrf_exempt
 
 from django.http import HttpResponse
 from .forms import *
@@ -12,14 +10,11 @@ from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 
 
-# from .models import *
-# from .forms import bugTicketForm
-
+# ------------------- (DASHBOARD AND CREATION OF TICKET) -------------------
 @login_required(login_url='bugtracker:login')
 @allowed_users(allowed_roles=['Developer', 'Tester', 'Client'])
-# Get bugs and display them
 def main(request):
-    print(request)
+    # print(request)
     ticketList = BugTicket.objects.order_by('-dateTime')
 
     if request.method == 'POST':
@@ -42,12 +37,15 @@ def main(request):
         action = 'create'
         if str(request.user.groups.all()[0]) != 'Client':
             form = BugTicketForm()
-            context = {'action': action, 'form': form, 'ticketList': ticketList}
+            context = {'action': action, 'form': form,
+                       'ticketList': ticketList}
         else:
             context = {'action': action, 'ticketList': ticketList}
 
         return render(request, 'bugtracker/main.html', context)
 
+
+# ------------------- (LOGIN) -------------------
 @unauthenticated_user
 def loginPage(request):
     if request.method == 'POST':
@@ -72,32 +70,28 @@ def logoutUser(request):
     return redirect('bugtracker:login')
 
 
-@login_required(login_url='bugtracker:login')
-@allowed_users(allowed_roles=['Developer', 'Tester'])
-def addBugTicket(request):
-    form = BugTicketForm()
-
-    context = {'form': form}
-    return render(request, 'bugtracker/addTicketForm.html', context)
-
-
+# ------------------- (VIEW TICKET) -------------------
 @login_required(login_url='bugtracker:login')
 @allowed_users(allowed_roles=['Developer', 'Tester', 'Client'])
 def viewTicket(request, ticket_id):
     ticket = get_object_or_404(BugTicket, pk=ticket_id)
 
-    allowed_user = (request.user == ticket.finderUserName) or (request.user.groups.all()[0] == 'Developer') 
- 
+    allowed_user = (request.user == ticket.finderUserName) or (
+        request.user.groups.all()[0] == 'Developer')
+
     # if ticket is not None:
     comments = ticket.comments.order_by('-dateTime')
     if ticket.status != 'Closed':
         form = CommentForm()
-        context = {'ticket': ticket, 'form': form, 'comments': comments, 'allowed_user': allowed_user}
+        context = {'ticket': ticket, 'form': form,
+                   'comments': comments, 'allowed_user': allowed_user}
     else:
-        context = {'ticket': ticket, 'comments': comments, 'allowed_user': allowed_user}
+        context = {'ticket': ticket, 'comments': comments,
+                   'allowed_user': allowed_user}
 
     # For csrf token to work the 'request' must be provided
-    html = render_to_string('bugtracker/ticketView.html',context=context, request=request)
+    html = render_to_string('bugtracker/ticketView.html',
+                            context=context, request=request)
     return HttpResponse(html)
 
 
@@ -108,7 +102,7 @@ def updateTicket(request, ticket_id):
     action = 'update'
     ticket = BugTicket.objects.get(id=ticket_id)
     form = BugTicketForm(instance=ticket)
-    
+
     if request.method == 'POST':
         print(request.POST)
         post = request.POST.copy()
@@ -120,12 +114,13 @@ def updateTicket(request, ticket_id):
             form.save()
             return HttpResponse('ok', status=200)
 
-    context = {'action':action, 'formData':form}
-    html = render_to_string('partials/addTicketForm.html',context=context,request=request)
+    context = {'action': action, 'formData': form}
+    html = render_to_string('partials/addTicketForm.html',
+                            context=context, request=request)
     return HttpResponse(html)
 
 
-#-------------------(DELETE VIEWS) -------------------
+# -------------------(DELETE TICKET) -------------------
 @login_required(login_url='bugtracker:login')
 @allowed_users(allowed_roles=['Developer', 'Tester'])
 def deleteTicket(request, ticket_id):
@@ -133,11 +128,12 @@ def deleteTicket(request, ticket_id):
     if request.method == 'POST':
         ticket.delete()
         return HttpResponse('ok', status=200)
-    
-    html = render_to_string('partials/delete_csrf.html',request=request)
+
+    html = render_to_string('partials/delete_csrf.html', request=request)
     return HttpResponse(html)
 
-# ------------------- (UPDATE COMMENT) -------------------
+
+# ------------------- (ADD COMMENT) -------------------
 @login_required(login_url='bugtracker:login')
 @allowed_users(allowed_roles=['Developer', 'Tester', 'Client'])
 def addComment(request):
@@ -149,9 +145,9 @@ def addComment(request):
 
         if form.is_valid():
             comment = form.save()
-            context = {'comments':[comment]}
-            html = render_to_string('partials/commentTemplate.html', context=context)
+            context = {'comments': [comment]}
+            html = render_to_string(
+                'partials/commentTemplate.html', context=context)
             return HttpResponse(html, status=200)
         else:
             return HttpResponse('error', status=500)
-        

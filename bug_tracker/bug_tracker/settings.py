@@ -26,10 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'c9ho_i__c7(00anf7amgms&(+l6nsqn=4e0gmk5w#c4ka76yca'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# if sys.argv[1] != 'runserver':
-#     DEBUG = False
-# else:
-DEBUG = True
+if sys.argv[1] != 'runserver':
+    DEBUG = False
+else:
+    DEBUG = True
 
 
 ALLOWED_HOSTS = ['ssts-bug-tracker.herokuapp.com']
@@ -84,20 +84,20 @@ WSGI_APPLICATION = 'bug_tracker.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# if sys.argv[1] != 'runserver':
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'SSTS_Bug_Tracker_DB'),
+if sys.argv[1] != 'runserver':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'SSTS_Bug_Tracker_DB'),
+        }
     }
-}
-# else:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'djongo',
-#             'NAME': 'SSTS_Bug_Tracker_DB',
-#         }
-#     }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'djongo',
+            'NAME': 'SSTS_Bug_Tracker_DB',
+        }
+    }
 
 
 
