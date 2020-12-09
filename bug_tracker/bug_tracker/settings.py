@@ -84,6 +84,7 @@ WSGI_APPLICATION = 'bug_tracker.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+
 if sys.argv[1] != 'runserver':
     DATABASES = {
         'default': {
@@ -98,7 +99,9 @@ else:
             'NAME': 'SSTS_Bug_Tracker_DB',
         }
     }
-
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
@@ -139,7 +142,7 @@ SESSION_SECURITY_WARN_AFTER = 540
 SESSION_EXPIRE_SECONDS = 600  # 10 min
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-SESSION_TIMEOUT_REDIRECT = 'bugtracker/logout/'  # redirect to whatever page
+SESSION_TIMEOUT_REDIRECT = '/logout/'  # redirect to whatever page
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
