@@ -76,8 +76,7 @@ def logoutUser(request):
 def viewTicket(request, ticket_id):
     ticket = get_object_or_404(BugTicket, pk=ticket_id)
 
-    allowed_user = (request.user == ticket.finderUserName) or (
-        request.user.groups.all()[0] == 'Developer')
+    allowed_user = (request.user.groups.all()[0].name == 'Developer') or (request.user == ticket.finderUserName) 
 
     # if ticket is not None:
     comments = ticket.comments.order_by('-dateTime')
