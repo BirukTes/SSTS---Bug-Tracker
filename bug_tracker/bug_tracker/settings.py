@@ -83,23 +83,14 @@ WSGI_APPLICATION = 'bug_tracker.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-
-if sys.argv[1] != 'runserver':
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'SSTS_Bug_Tracker_DB'),
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'djongo',
+        'NAME': 'SSTS_Bug_Tracker_DB',
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'djongo',
-            'NAME': 'SSTS_Bug_Tracker_DB',
-        }
-    }
-import dj_database_url
+}
+# Production PostgreSQL database
+import dj_database_url 
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
 
