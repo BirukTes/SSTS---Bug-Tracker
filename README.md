@@ -1,3 +1,5 @@
+![BugTrackerLogo (Custom)](https://user-images.githubusercontent.com/23151263/115998981-cf5aef80-a5e1-11eb-8f99-b53c295b4cab.png)
+
 # SSTS Bug Tracker
 Django web app for management of bug tickets 
 
